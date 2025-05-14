@@ -171,8 +171,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
+	  HAL_GPIO_TogglePin(MCU_ACTIVE_GPIO_Port, MCU_ACTIVE_Pin);
+	  HAL_GPIO_TogglePin(FRAME_RATE_GPIO_Port, FRAME_RATE_Pin);
+	  HAL_Delay(200);
   }
   /* USER CODE END 3 */
 }
