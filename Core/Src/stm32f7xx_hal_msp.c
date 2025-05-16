@@ -71,6 +71,8 @@ void HAL_MspInit(void)
   __HAL_RCC_SYSCFG_CLK_ENABLE();
 
   /* System interrupt init*/
+  /* PendSV_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(PendSV_IRQn, 15, 0);
 
   /* USER CODE BEGIN MspInit 1 */
 
@@ -138,7 +140,7 @@ void HAL_DMA2D_MspInit(DMA2D_HandleTypeDef* hdma2d)
     /* Peripheral clock enable */
     __HAL_RCC_DMA2D_CLK_ENABLE();
     /* DMA2D interrupt Init */
-    HAL_NVIC_SetPriority(DMA2D_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(DMA2D_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(DMA2D_IRQn);
     /* USER CODE BEGIN DMA2D_MspInit 1 */
 
@@ -202,7 +204,7 @@ void HAL_DSI_MspInit(DSI_HandleTypeDef* hdsi)
     HAL_GPIO_Init(GPIOJ, &GPIO_InitStruct);
 
     /* DSI interrupt Init */
-    HAL_NVIC_SetPriority(DSI_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(DSI_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(DSI_IRQn);
     /* USER CODE BEGIN DSI_MspInit 1 */
 
@@ -290,7 +292,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     /* Peripheral clock enable */
     __HAL_RCC_I2C4_CLK_ENABLE();
     /* I2C4 interrupt Init */
-    HAL_NVIC_SetPriority(I2C4_EV_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(I2C4_EV_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(I2C4_EV_IRQn);
     /* USER CODE BEGIN I2C4_MspInit 1 */
 
@@ -413,6 +415,8 @@ void HAL_QSPI_MspInit(QSPI_HandleTypeDef* hqspi)
   {
     /* USER CODE BEGIN QUADSPI_MspInit 0 */
 
+    __HAL_RCC_QSPI_FORCE_RESET();
+    __HAL_RCC_QSPI_RELEASE_RESET();
     /* USER CODE END QUADSPI_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_QSPI_CLK_ENABLE();
@@ -505,6 +509,8 @@ void HAL_QSPI_MspDeInit(QSPI_HandleTypeDef* hqspi)
     HAL_GPIO_DeInit(GPIOD, GPIO_PIN_13);
 
     /* USER CODE BEGIN QUADSPI_MspDeInit 1 */
+    __HAL_RCC_QSPI_FORCE_RESET();
+    __HAL_RCC_QSPI_RELEASE_RESET();
 
     /* USER CODE END QUADSPI_MspDeInit 1 */
   }
@@ -760,5 +766,60 @@ void HAL_SDRAM_MspDeInit(SDRAM_HandleTypeDef* hsdram){
 }
 
 /* USER CODE BEGIN 1 */
+
+/**
+  * @brief QSPI MSP Initialization
+  *        This function configures the hardware resources used in this example:
+  *           - Peripheral's clock enable
+  *           - Peripheral's GPIO Configuration
+  *           - NVIC configuration for QSPI interrupt
+  * @retval None
+  */
+void BSP_QSPI_MspInit(QSPI_HandleTypeDef *hqspi, void *Params)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(hqspi);
+  UNUSED(Params);
+}
+
+/**
+  * @brief QSPI MSP De-Initialization
+  *        This function frees the hardware resources used in this example:
+  *          - Disable the Peripheral's clock
+  *          - Revert GPIO and NVIC configuration to their default state
+  * @retval None
+  */
+void BSP_QSPI_MspDeInit(QSPI_HandleTypeDef *hqspi, void *Params)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(hqspi);
+  UNUSED(Params);
+}
+
+/**
+  * @brief  Initializes SDRAM MSP.
+  * @param  hsdram: SDRAM handle
+  * @param  Params  
+  * @retval None
+  */
+void BSP_SDRAM_MspInit(SDRAM_HandleTypeDef  *hsdram, void *Params)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(hsdram);
+  UNUSED(Params);
+}
+
+/**
+  * @brief  DeInitializes SDRAM MSP.
+  * @param  hsdram: SDRAM handle
+  * @param  Params  
+  * @retval None
+  */
+void BSP_SDRAM_MspDeInit(SDRAM_HandleTypeDef  *hsdram, void *Params)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(hsdram);
+  UNUSED(Params);
+}
 
 /* USER CODE END 1 */

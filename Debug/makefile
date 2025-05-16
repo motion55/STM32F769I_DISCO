@@ -9,7 +9,22 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include TouchGFX/target/generated/subdir.mk
+-include TouchGFX/target/subdir.mk
+-include TouchGFX/gui/src/model/subdir.mk
+-include TouchGFX/gui/src/main_screen/subdir.mk
+-include TouchGFX/gui/src/common/subdir.mk
+-include TouchGFX/generated/texts/src/subdir.mk
+-include TouchGFX/generated/images/src/subdir.mk
+-include TouchGFX/generated/gui_generated/src/main_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/common/subdir.mk
+-include TouchGFX/generated/fonts/src/subdir.mk
+-include TouchGFX/App/subdir.mk
 -include Middlewares/Third_Party/LibJPEG/source/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/subdir.mk
 -include LIBJPEG/App/subdir.mk
 -include Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk
 -include Drivers/BSP/otm8009a/subdir.mk
@@ -88,7 +103,7 @@ main-build: STM32F769I_DISCO.elf secondary-outputs
 
 # Tool invocations
 STM32F769I_DISCO.elf STM32F769I_DISCO.map: $(OBJS) $(USER_OBJS) C:\Users\Butch\STM32CubeIDE\workspace_1.17.0\STM32F769I_DISCO\STM32F769NIHX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "STM32F769I_DISCO.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Butch\STM32CubeIDE\workspace_1.17.0\STM32F769I_DISCO\STM32F769NIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F769I_DISCO.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o "STM32F769I_DISCO.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Butch\STM32CubeIDE\workspace_1.17.0\STM32F769I_DISCO\STM32F769NIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F769I_DISCO.map" -Wl,--gc-sections -static -L"C:\Users\Butch\STM32CubeIDE\workspace_1.17.0\STM32F769I_DISCO\Middlewares\ST\touchgfx\lib\core\cortex_m7\gcc" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

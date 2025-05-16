@@ -43,5 +43,20 @@ Core/Startup \
 Drivers/BSP/otm8009a \
 Drivers/STM32F7xx_HAL_Driver/Src \
 LIBJPEG/App \
+Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 \
+Middlewares/Third_Party/FreeRTOS/Source \
+Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 \
+Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang \
 Middlewares/Third_Party/LibJPEG/source \
+TouchGFX/App \
+TouchGFX/generated/fonts/src \
+TouchGFX/generated/gui_generated/src/common \
+TouchGFX/generated/gui_generated/src/main_screen \
+TouchGFX/generated/images/src \
+TouchGFX/generated/texts/src \
+TouchGFX/gui/src/common \
+TouchGFX/gui/src/main_screen \
+TouchGFX/gui/src/model \
+TouchGFX/target \
+TouchGFX/target/generated \
 
